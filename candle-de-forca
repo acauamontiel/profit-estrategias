@@ -1,0 +1,11 @@
+// Regra de coloração
+// Candle de força
+// De Acauã Montiel
+input
+  size(150);
+begin
+  if (size <= open - close) then
+    PaintBar(clRed);
+  if (size <= close - open) then
+    PaintBar(clGreen);
+end;
