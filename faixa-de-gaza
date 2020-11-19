@@ -1,0 +1,77 @@
+// Indicador e regra de execução
+// Faixa de Gaza
+// De Acauã Montiel
+input
+  gap(15);
+  gain(135);
+  loss(120);
+  gapInverso(true);
+var
+  highPoint : float;
+  lowPoint  : float;
+  refBar    : integer;
+  last      : integer;
+  bullshit  : real;
+function StopBought(hp : float;
+g : integer;
+l : integer) : real;
+begin
+  SellToCoverStop(hp + g,hp + g);
+  SellToCoverStop(hp - l,hp - l);
+end;
+function StopSold(lp : float;
+g : integer;
+l : integer) : real;
+begin
+  BuyToCoverStop(lp - g,lp - g);
+  BuyToCoverStop(lp + l,lp + l);
+end;
+begin
+  refbar := FindBar(Date,915);
+  if (Time >= 915) and (Time <= 1700) and (refBar >= 0) then
+    begin
+      if (gapInverso) then
+        begin
+          highPoint := High[refBar] - gap;
+          lowPoint := Low[refBar] + gap;
+        end
+      else 
+        begin
+          highPoint := High[refBar] + gap;
+          lowPoint := Low[refBar] - gap;
+        end;
+      Plot(highPoint);
+      Plot2(lowPoint);
+      SetPlotColor(1,clGreen);
+      SetPlotColor(2,clMaroon);
+    end;
+  if (Time >= 915) and (Time < 1700) then
+    if ( not IsBought) and ( not IsSold) then
+      begin
+        if (last >= 0) then
+          begin
+            last := - 1;
+            SellShortStop(lowPoint,lowPoint);
+            bullshit := StopSold(lowPoint,gain,loss);
+          end
+        else if (last <= 0) then
+          begin
+            last := 1;
+            BuyStop(highPoint,highPoint);
+            bullshit := StopBought(highPoint,gain,loss);
+          end;
+      end;
+  if (IsBought) then
+    begin
+      bullshit := StopBought(highPoint,gain,loss);
+    end;
+  if (IsSold) then
+    begin
+      bullshit := StopSold(lowPoint,gain,loss);
+    end;
+  if (Time >= 1715) then
+    if (IsBought) then
+      SellToCoverAtMarket
+    else if (IsSold) then
+      BuyToCoverAtMarket;
+end;
