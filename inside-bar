@@ -1,0 +1,12 @@
+// Regra de coloração
+// Inside Bar
+// Otimização por Acauã Montiel
+begin
+  if (high < high[1]) and (low > low[1]) then
+    begin
+      if (close > open) then
+        PaintBar(clGreen)
+      else
+        PaintBar(clRed);
+    end;
+end;
