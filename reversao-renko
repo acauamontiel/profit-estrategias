@@ -1,0 +1,9 @@
+// Regra de coloração
+// Reversão Renko
+// De Acauã Montiel
+begin
+  if (close > open) and (low < open) and (close[1] < open[1]) then
+    PaintBar(clGreen);
+  if (close < open) and (high > open) and (close[1] > open[1]) then
+    PaintBar(clRed);
+end;
