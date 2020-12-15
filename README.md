@@ -10,6 +10,7 @@
 - [Reversão Renko](reversao-renko)
 - [Drible da Vaca](drible-da-vaca)
 - [Falha na Tendência](falha-na-tendencia)
+- [Preço de Fechamento de Reversão](preco-de-fechamento-de-reversao)
 
 **Regras de Execução**
 - [Faixa de Gaza](faixa-de-gaza)
