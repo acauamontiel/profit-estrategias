@@ -9,6 +9,7 @@
 - [Candle de Força](candle-de-forca) (personalizável)
 - [Reversão Renko](reversao-renko)
 - [Drible da Vaca](drible-da-vaca)
+- [Falha na Tendência](falha-na-tendencia)
 
 **Regras de Execução**
 - [Faixa de Gaza](faixa-de-gaza)
