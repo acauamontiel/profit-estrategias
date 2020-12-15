@@ -1,0 +1,14 @@
+// Regra de coloração
+// Preço de fechamento de reversão
+// De Stormer
+begin
+  if (low < low[1]) and
+    (low < low[2]) and
+    (close > close[1]) then
+      PaintBar(clGreen);
+
+  if (high > high[1]) and
+    (high > high[2]) and
+    (close < close[1]) then
+      PaintBar(clRed);
+end;
