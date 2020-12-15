@@ -1,0 +1,20 @@
+// Regra de coloração
+// Falha na tendência
+// De Stormer
+var
+  mm : float;
+begin
+  mm := Media(20, close);
+
+  if (close[2] < open[2]) and
+    (close[1] > open[1]) and
+    (close > open) and
+    (mm[1] < mm) then
+      PaintBar(clGreen);
+
+  if (close[2] > open[2]) and
+    (close[1] < open[1]) and
+    (close < open) and
+    (mm[1] > mm) then
+      PaintBar(clRed);  
+end;
